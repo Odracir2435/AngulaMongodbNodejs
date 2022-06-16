@@ -1,0 +1,74 @@
+<img src="../../assets/images/proovedores.png" alt="" width="400px" height="300px" style="margin-left: 35%;">
+
+<div class="row">
+    <span class="titulo" style="margin-left: 40%; font-weight: bold; font-size:30px;">{{titulo | uppercase}}</span>
+  <div class="col-3">
+    <p>Buscar proovedor</p>
+  </div>
+  <div class="col-9">
+
+    <input aria-label="Search" type="search" placeholder="Buscar proovedor" class="form-control" (keyup)="loadProovedor()" [(ngModel)]="search">
+
+  </div>
+</div>
+<form>
+    <div class="row">
+        <div class="col-4">
+          <div class="form-group">
+            <label for="">Nombre</label>
+            <input type="text" class="form-control" name="nombre" [(ngModel)]="proovedor.nombre" >
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            <label for="">Empresa</label>
+            <input type="text" class="form-control" name="empresa" [(ngModel)]="proovedor.empresa" >
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            <label for="">Telefono</label>
+            <input type="text" class="form-control" name="telefono" [(ngModel)]="proovedor.telefono" >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <div class="form-group">
+            <label for="">Correo</label>
+            <input type="text" class="form-control" name="correo" [(ngModel)]="proovedor.correo" >
+          </div>
+        </div>
+        <div class="form-group">
+          <button (click)="guardar()"  type="button" class="btn btn-success" style="float:right">Guardar</button>
+        </div>
+        </div>
+  </form>
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Empresa</th>
+            <th>Telefono</th>
+            <th>Correo</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of proovedores">
+              <td>{{item.nombre}}</td>
+              <td>{{item.empresa}}</td>
+              <td>{{item.telefono}}</td>
+              <td>{{item.correo}}</td>
+              <td>
+                <i (click)="eliminar(item._id)" class="fas fa-trash text-danger"></i>
+                <i [routerLink]="['/editar-proovedor', item._id ]"class="fas fa-edit text-success "></i>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+  

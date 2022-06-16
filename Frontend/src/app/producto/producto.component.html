@@ -1,0 +1,79 @@
+<img src="../../assets/images/producto.png" alt="" width="200px" height="200px" style="margin-left: 35%;">
+
+<div class="col-3">
+    <span class="titulo" style="margin-left: 30%; font-weight: bold; font-size:20px;">{{titulo | uppercase}}</span>
+    <p>Buscar usuario</p>
+  </div>
+  <div class="col-9">
+
+    <input aria-label="Search" type="search" placeholder="Buscar Producto" class="form-control" (keyup)="loadProducto()" [(ngModel)]="search">
+
+  </div>
+<div class="row">
+    <div class="col-4">
+      <div class="form-group">
+        <label for="">Nombre</label>
+        <input type="text" class="form-control" [(ngModel)]="formProductos.nombre" >
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="form-group">
+        <label for="">Precio</label>
+        <input type="text" class="form-control" [(ngModel)]="formProductos.precio" >
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="form-group">
+        <label for="">Cantidad</label>
+        <input type="text" class="form-control" [(ngModel)]="formProductos.cantidad">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <div class="form-group">
+        <label for="">Categoria</label>
+        <select name="" id="" class="form-control" [(ngModel)]="formProductos.categoria">
+          <option value="">Seleccione</option>
+          <option value="Granos">Granos</option>
+          <option value="Lacteos">Lacteos</option>
+          <option value="Refrescos">Refrescos</option>
+          <option value="Botana">Botana</option>
+          <option value="Dulces">Dulces</option>
+          <option value="Limpieza">Limpieza</option>
+        </select>
+      </div>
+    </div>
+   
+  </div>
+  <div class="row">
+    <button (click)="guardar()" class="btn btn-succes" type="button">Guardar</button>
+  </div>
+
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+        
+          <th>Nombre</th>
+          <th>Categoria</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of productos; let i = index">
+     
+          <td>{{producto.nombre}}</td>
+          <td>{{producto.categoria}}</td>
+          <td>{{producto.precio}}</td>
+          <td>{{producto.cantidad}}</td>
+          <td>
+            <i (click)="eliminar(producto._id)"  class="fas fa-trash text-danger"></i>
+            <i [routerLink]="['/editar-producto', producto._id ]"  class="fas fa-edit text-success "></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

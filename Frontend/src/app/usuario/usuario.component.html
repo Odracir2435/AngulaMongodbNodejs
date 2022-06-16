@@ -1,0 +1,91 @@
+<img src="../../assets/images/usuarios.png" alt="" height="200px" width="300px" style="margin-left: 40%;">
+
+
+<div class="row">
+  <span class="titulo" style="margin-left: 40%; font-weight: bold; font-size:30px;">{{titulo | uppercase}}</span>
+  <div class="col-3" class="col-3" style="margin-top: 5%;">
+    <p style="margin-left: 60%; margin-top: 3%;">Buscar usuario</p>
+  </div>
+  <div class="col-9">
+
+    <input aria-label="Search" style="margin-top: 7%;" type="search" placeholder="Buscar Usuario" class="form-control" (keyup)="loadUsuario()" [(ngModel)]="search">
+
+  </div>
+</div>
+<form>
+    <div class="row">
+      <div class="col-4">
+        <div class="form-group">
+          <label for="">Nombre</label>
+          <input type="text" class="form-control" name="nombre" [(ngModel)]="usuario.nombre" >
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <label for="">Apellido</label>
+          <input type="text" class="form-control" name="apellido" [(ngModel)]="usuario.apellido" >
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <label for="">Telefono</label>
+          <input type="text" class="form-control" name="telefono" [(ngModel)]="usuario.telefono" >
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <div class="form-group">
+          <label for="">Correo</label>
+          <input type="text" class="form-control" name="correo" [(ngModel)]="usuario.correo" >
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <label for="">Usuario</label>
+          <input type="text" class="form-control" name="usuario" [(ngModel)]="usuario.usuario" >
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <label for="">Clave</label>
+          <input type="password" class="form-control" name="clave" [(ngModel)]="usuario.clave" >
+        </div>
+      </div>
+      <div class="form-group">
+        <button (click)="guardar()"  type="button" class="btn btn-success" style="float:right">Guardar</button>
+      </div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Telefono</th>
+            <th>Correo</th>
+            <th>Usuario</th>
+            <th>Estado</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of usuarios">
+              <td>{{item.nombre}}</td>
+              <td>{{item.apellido}}</td>
+              <td>{{item.telefono}}</td>
+              <td>{{item.correo}}</td>
+              <td>{{item.usuario}}</td>
+              <td>{{item.estado?"Activo":"Inactivo"}}</td>
+              <td>
+                <i (click)="eliminar(item._id)" class="fas fa-trash text-danger"></i>
+                <i [routerLink]="['/editar-usuario', item._id ]"class="fas fa-edit text-success "></i>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+  

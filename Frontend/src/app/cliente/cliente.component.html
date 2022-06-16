@@ -1,0 +1,66 @@
+<img src="../../assets/images/clientes.png" alt="" width="400px" height="300px" style="margin-left: 35%;">
+
+<div class="row">
+    <span class="titulo" style="margin-left: 40%; font-weight: bold; font-size:30px;">{{titulo | uppercase}}</span>
+  <div class="col-3">
+    <p>Buscar cliente</p>
+  </div>
+  <div class="col-9">
+
+    <input aria-label="Search" type="search" placeholder="Buscar cliente" class="form-control" (keyup)="loadCliente()" [(ngModel)]="search">
+
+  </div>
+</div>
+<form>
+    <div class="row">
+        <div class="col-4">
+          <div class="form-group">
+            <label for="">Nombre</label>
+            <input type="text" class="form-control" name="nombre" [(ngModel)]="cliente.nombre" >
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            <label for="">Direccion</label>
+            <input type="text" class="form-control" name="direccion" [(ngModel)]="cliente.direccion" >
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            <label for="">Telefono</label>
+            <input type="text" class="form-control" name="telefono" [(ngModel)]="cliente.telefono" >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <button (click)="guardar()"  type="button" class="btn btn-success" style="float:right">Guardar</button>
+        </div>
+        </div>
+  </form>
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of clientes">
+              <td>{{item.nombre}}</td>
+              <td>{{item.direccion}}</td>
+              <td>{{item.telefono}}</td>
+              <td>
+                <i (click)="eliminar(item._id)" class="fas fa-trash text-danger"></i>
+                <i [routerLink]="['/editar-cliente', item._id ]"class="fas fa-edit text-success "></i>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+  
